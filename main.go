@@ -8,6 +8,7 @@ import (
 
 	"github.com/yakuter/gol/commands/echo"
 	"github.com/yakuter/gol/commands/help"
+	"github.com/yakuter/gol/commands/mkdir"
 
 	"github.com/urfave/cli/v2"
 )
@@ -32,5 +33,6 @@ func Commands(reader io.Reader) []*cli.Command {
 		help.Command(),
 		echo.Command(),
 		pwd.Command(),
+    mkdir.Command(),
 	}
 }
