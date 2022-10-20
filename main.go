@@ -1,16 +1,17 @@
 package main
 
 import (
-	"github.com/yakuter/gol/commands/pwd"
 	"io"
 	"log"
 	"os"
 
+	"github.com/urfave/cli/v2"
+
 	"github.com/yakuter/gol/commands/echo"
 	"github.com/yakuter/gol/commands/help"
 	"github.com/yakuter/gol/commands/mkdir"
-
-	"github.com/urfave/cli/v2"
+	"github.com/yakuter/gol/commands/pwd"
+	"github.com/yakuter/gol/commands/rm"
 )
 
 var Version = "v1.0.0"
@@ -33,6 +34,7 @@ func Commands(reader io.Reader) []*cli.Command {
 		help.Command(),
 		echo.Command(),
 		pwd.Command(),
-    mkdir.Command(),
+		mkdir.Command(),
+		rm.Command(),
 	}
 }

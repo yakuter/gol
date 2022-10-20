@@ -16,8 +16,8 @@ func Command() *cli.Command {
 		Name:        CmdRm,
 		HelpName:    CmdRm,
 		Action:      Action,
-		Usage:       `removes file or directory.`,
-		Description: `removes file or directory.`,
+		Usage:       `removes files or directories.`,
+		Description: `removes files or directories.`,
 		Flags: []cli.Flag{
 			&cli.BoolFlag{
 				Name:        "force",
