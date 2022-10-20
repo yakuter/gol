@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/yakuter/gol/commands/pwd"
 	"io"
 	"log"
 	"os"
@@ -30,5 +31,6 @@ func Commands(reader io.Reader) []*cli.Command {
 	return []*cli.Command{
 		help.Command(),
 		echo.Command(),
+		pwd.Command(),
 	}
 }
