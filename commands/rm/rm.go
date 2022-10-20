@@ -94,7 +94,7 @@ func removeDirectoryWithContents(dir string) error {
 	}
 
 	// Get all files in the directory
-	names, err := file.Readdirnames(100)
+	names, err := file.Readdirnames(-1)
 	if err != nil {
 		return err
 	}
