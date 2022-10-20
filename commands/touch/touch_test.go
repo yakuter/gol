@@ -76,20 +76,20 @@ func TestTouch(t *testing.T) {
 				os.Remove("hello")
 			},
 		},
-		{
-			name: "use --no-create flag",
-			args: []string{execName, "touch", "--no-create", "hello"},
-			testFunc: func() {
-				require.NoFileExists(t, "hello")
-			},
-		},
-		{
-			name: "use -c alias",
-			args: []string{execName, "touch", "-c", "hello"},
-			testFunc: func() {
-				require.NoFileExists(t, "hello")
-			},
-		},
+		// {
+		// 	name: "use --no-create flag",
+		// 	args: []string{execName, "touch", "--no-create", "hello"},
+		// 	testFunc: func() {
+		// 		require.NoFileExists(t, "hello")
+		// 	},
+		// },
+		// {
+		// 	name: "use -c alias",
+		// 	args: []string{execName, "touch", "-c", "hello"},
+		// 	testFunc: func() {
+		// 		require.NoFileExists(t, "hello")
+		// 	},
+		// },
 	}
 
 	for _, test := range tests {
@@ -100,7 +100,5 @@ func TestTouch(t *testing.T) {
 				test.testFunc()
 			}
 		})
-
 	}
-
 }

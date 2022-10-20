@@ -25,7 +25,6 @@ func Command() *cli.Command {
 
 func Flags() []cli.Flag {
 	return []cli.Flag{
-		// -c no create
 		&cli.BoolFlag{
 			Name:     "no-create",
 			Aliases:  []string{"c"},
@@ -52,7 +51,16 @@ func Action(c *cli.Context) error {
 
 	now := time.Now()
 	for _, arg := range args.Slice() {
-		os.Chtimes(arg, now, now)
+		err := os.Chtimes(arg, now, now)
+
+		if os.IsNotExist(err) {
+			notExistMsg := "no such file exist: " + arg
+			return cli.Exit(notExistMsg, 2)
+		}
+
+		if err != nil {
+			return cli.Exit("error occurred while changing times", 5)
+		}
 	}
 
 	return nil
