@@ -1,4 +1,4 @@
-package pwd_test
+package whoami_test
 
 import (
 	"os"
@@ -7,19 +7,19 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/urfave/cli/v2"
 
-	"github.com/yakuter/gol/commands/pwd"
+	"github.com/yakuter/gol/commands/whoami"
 )
 
-func TestPwd(t *testing.T) {
+func TestEcho(t *testing.T) {
 	execName, err := os.Executable()
 	require.NoError(t, err)
 
 	app := &cli.App{
 		Commands: []*cli.Command{
-			pwd.Command(),
+			whoami.Command(),
 		},
 	}
 
-	testArgs := []string{execName, "pwd"}
+	testArgs := []string{execName, "whoami"}
 	require.NoError(t, app.Run(testArgs))
 }
