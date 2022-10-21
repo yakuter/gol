@@ -2,8 +2,7 @@ package ls
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
+	"os"
 
 	"github.com/urfave/cli/v2"
 )
@@ -32,21 +31,16 @@ func Flags() []cli.Flag {
 }
 
 func Action(c *cli.Context) error {
-	args := c.Args()
-	var files,err = ioutil.ReadDir(args.First())
-
-	if args.Len() == 0 {
-		files,err = ioutil.ReadDir("./")
+	path := c.Args().First()
+	if path == "" {
+		path = "./"
 	}
-
-	if err != nil {
-		log.Println(err)
-		return err
-	}
-
-	for _, f := range files {
-		fmt.Println(f.Name())
-	}
-
-	return nil
-}
+ 	files, err := os.ReadDir(path)
+ 	if err != nil {
+ 		return fmt.Errorf("read dir %q error: %w", path, err)
+ 	}
+ 	for _, f := range files {
+ 		fmt.Println(f.Name())
+ 	}
+ 	return nil
+ }
