@@ -3,6 +3,7 @@ package ls
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 
 	"github.com/urfave/cli/v2"
 )
@@ -11,13 +12,14 @@ const (
 	CmdLs = "ls"
 )
 
+
 func Command() *cli.Command {
 	return &cli.Command{
 		Name:        CmdLs,
 		HelpName:    CmdLs,
 		Action:      Action,
 		ArgsUsage:   ` `,
-		Usage:       `write arguments to the standard output.`,
+		Usage:       `The ls utility lists directory contents of files and directories`,
 		Description: `The ls utility lists directory contents of files and directories`,
 		Flags:       Flags(),
 	}
@@ -25,34 +27,21 @@ func Command() *cli.Command {
 
 func Flags() []cli.Flag {
 	return []cli.Flag{
-		// Example Flags
-		/*
-			&cli.StringFlag{
-				Name:     flagOut,
-				Usage:    "Output file path",
-				Required: false,
-			},
-			&cli.UintFlag{
-				Name:     flagBits,
-				Usage:    "Number of bits",
-				Required: true,
-			},
-			&cli.BoolFlag{
-				Name:        flagWithPublic,
-				Usage:       "Export public key with private key",
-				Required:    false,
-				DefaultText: "false",
-			},
-		*/
+		// TODO: Add flags
 	}
 }
 
 func Action(c *cli.Context) error {
-	// args := c.Args()
-	files, err := ioutil.ReadDir("./")
+	args := c.Args()
+	var files,err = ioutil.ReadDir(args.First())
+
+	if args.Len() == 0 {
+		files,err = ioutil.ReadDir("./")
+	}
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
+		return err
 	}
 
 	for _, f := range files {

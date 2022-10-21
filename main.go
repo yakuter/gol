@@ -12,6 +12,7 @@ import (
 	"github.com/yakuter/gol/commands/mkdir"
 	"github.com/yakuter/gol/commands/pwd"
 	"github.com/yakuter/gol/commands/whoami"
+	"github.com/yakuter/gol/commands/ls"
 )
 
 var Version = "v1.0.0"
@@ -36,5 +37,6 @@ func Commands(reader io.Reader) []*cli.Command {
 		pwd.Command(),
 		mkdir.Command(),
 		whoami.Command(),
+		ls.Command(),
 	}
 }
