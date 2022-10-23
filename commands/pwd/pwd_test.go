@@ -1,4 +1,4 @@
-package pwd
+package pwd_test
 
 import (
 	"os"
