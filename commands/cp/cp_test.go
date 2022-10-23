@@ -28,4 +28,8 @@ func TestCp(t *testing.T) {
 
 	testArgs := []string{execName, "cp", f.Name(), tmpDir + "/target"}
 	require.NoError(t, app.Run(testArgs))
+
+	t.Cleanup(func() {
+		os.Remove(tmpDir + "/target")
+	})
 }
