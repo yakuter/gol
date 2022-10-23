@@ -19,6 +19,13 @@ func TestCp(t *testing.T) {
 		},
 	}
 
-	testArgs := []string{execName, "cp", "source", "target"}
+	tmpDir := os.TempDir()
+	f, err := os.CreateTemp("", "source")
+	if err != nil {
+		t.Fatalf("could not create temp file, %v", err)
+	}
+	defer os.Remove(f.Name()) // clean up
+
+	testArgs := []string{execName, "cp", f.Name(), tmpDir + "/target"}
 	require.NoError(t, app.Run(testArgs))
 }
