@@ -20,7 +20,13 @@ func TestCp(t *testing.T) {
 	}
 
 	tmpDir := os.TempDir()
-	f, err := os.CreateTemp("", "source")
+
+	p, err := os.MkdirTemp("", "source_dir")
+	if err != nil {
+		t.Fatalf("could not create temp dir, %v", err)
+	}
+
+	f, err := os.CreateTemp(p, "source")
 	if err != nil {
 		t.Fatalf("could not create temp file, %v", err)
 	}
@@ -29,7 +35,11 @@ func TestCp(t *testing.T) {
 	testArgs := []string{execName, "cp", f.Name(), tmpDir + "/target"}
 	require.NoError(t, app.Run(testArgs))
 
+	testArgs = []string{execName, "cp", "-r", p, tmpDir + "/target_dir"}
+	require.NoError(t, app.Run(testArgs))
+
 	t.Cleanup(func() {
 		os.Remove(tmpDir + "/target")
+		os.RemoveAll(tmpDir + "/target_dir")
 	})
 }

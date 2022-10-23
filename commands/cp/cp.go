@@ -84,7 +84,9 @@ func Action(c *cli.Context) error {
 				return err
 			}
 		} else if stat.IsDir() {
-			return errors.New("not implemented yet")
+			if err := cpDir(c, path, target); err != nil {
+				return err
+			}
 		}
 	}
 
@@ -116,6 +118,39 @@ func cpFile(c *cli.Context, path, dest string, bufSize int64) error {
 
 		if _, err := target.Write(buf[:n]); err != nil {
 			return err
+		}
+	}
+
+	return nil
+}
+
+func cpDir(c *cli.Context, path, dest string) error {
+	pathStat, err := os.Stat(path)
+	if err != nil {
+		return err
+	}
+	if err := os.MkdirAll(dest, pathStat.Mode().Perm()); err != nil {
+		return err
+	}
+
+	files, err := os.ReadDir(path)
+	if err != nil {
+		return err
+	}
+
+	for _, f := range files {
+		if f.IsDir() {
+			if err := cpDir(c, path+"/"+f.Name(), dest+"/"+f.Name()); err != nil {
+				return err
+			}
+		} else {
+			fStat, err := os.Stat(path + "/" + f.Name())
+			if err != nil {
+				return err
+			}
+			if err := cpFile(c, path+"/"+f.Name(), dest+"/"+f.Name(), fStat.Size()); err != nil {
+				return err
+			}
 		}
 	}
 
