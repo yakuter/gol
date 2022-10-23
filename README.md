@@ -8,33 +8,33 @@ For the all configuration
 ```bash
 gol help
 ```
-####Commands
-#####Echo
+#### Commands
+#### #Echo
 ```bash
 gol echo
 ```
 
-#####ls
+##### ls
 ```bash
 gol ls
 ```
 
-#####mkdir
+##### mkdir
 ```bash
 gol mkdir
 ```
 
-#####pwd
+##### pwd
 ```bash
 gol pwd
 ```
 
-#####whoami
+##### whoami
 ```bash
 gol pwd
 ```
 
-####Global Options
+#### Global Options
 - --version, -v print the version (default: false)
 
 ## Contributing
@@ -45,7 +45,7 @@ Please make sure to update tests as appropriate.
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
-##Contributors
+## Contributors
 <a href = "https://github.com/Tanu-N-Prabhu/Python/graphs/contributors">
   <img src = "https://contrib.rocks/image?repo=yakuter/gol"/>
 </a>
