@@ -9,7 +9,7 @@ For the all configuration
 gol help
 ```
 #### Commands
-#### #Echo
+##### Echo
 ```bash
 gol echo
 ```
