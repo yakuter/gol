@@ -46,6 +46,6 @@ Please make sure to update tests as appropriate.
 [MIT](https://choosealicense.com/licenses/mit/)
 
 ## Contributors
-<a href = "https://github.com/Tanu-N-Prabhu/Python/graphs/contributors">
+<a href = "https://github.com/yakuter/gol/graphs/contributors">
   <img src = "https://contrib.rocks/image?repo=yakuter/gol"/>
 </a>
