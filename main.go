@@ -8,6 +8,7 @@ import (
 	"github.com/urfave/cli/v2"
 
 	"github.com/yakuter/gol/commands/echo"
+	"github.com/yakuter/gol/commands/grep"
 	"github.com/yakuter/gol/commands/help"
 	"github.com/yakuter/gol/commands/mkdir"
 	"github.com/yakuter/gol/commands/pwd"
@@ -37,6 +38,7 @@ func Commands(reader io.Reader) []*cli.Command {
 		pwd.Command(),
 		mkdir.Command(),
 		whoami.Command(),
+		grep.Command(),
 		ls.Command(),
 	}
 }
