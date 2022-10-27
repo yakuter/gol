@@ -7,13 +7,14 @@ import (
 
 	"github.com/urfave/cli/v2"
 
+	"github.com/yakuter/gol/commands/cp"
 	"github.com/yakuter/gol/commands/echo"
 	"github.com/yakuter/gol/commands/grep"
 	"github.com/yakuter/gol/commands/help"
+	"github.com/yakuter/gol/commands/ls"
 	"github.com/yakuter/gol/commands/mkdir"
 	"github.com/yakuter/gol/commands/pwd"
 	"github.com/yakuter/gol/commands/whoami"
-	"github.com/yakuter/gol/commands/ls"
 )
 
 var Version = "v1.0.0"
@@ -40,5 +41,6 @@ func Commands(reader io.Reader) []*cli.Command {
 		whoami.Command(),
 		grep.Command(),
 		ls.Command(),
+		cp.Command(),
 	}
 }
