@@ -7,11 +7,17 @@ import (
 
 	"github.com/urfave/cli/v2"
 
+	"github.com/yakuter/gol/commands/cat"
+	"github.com/yakuter/gol/commands/cp"
 	"github.com/yakuter/gol/commands/echo"
+	"github.com/yakuter/gol/commands/grep"
 	"github.com/yakuter/gol/commands/help"
+	"github.com/yakuter/gol/commands/ls"
 	"github.com/yakuter/gol/commands/mkdir"
 	"github.com/yakuter/gol/commands/pwd"
 	"github.com/yakuter/gol/commands/rm"
+	"github.com/yakuter/gol/commands/touch"
+	"github.com/yakuter/gol/commands/whoami"
 )
 
 var Version = "v1.0.0"
@@ -36,5 +42,11 @@ func Commands(reader io.Reader) []*cli.Command {
 		pwd.Command(),
 		mkdir.Command(),
 		rm.Command(),
+		touch.Command(),
+		whoami.Command(),
+		grep.Command(),
+		ls.Command(),
+		cat.Command(),
+		cp.Command(),
 	}
 }
