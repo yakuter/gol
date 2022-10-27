@@ -43,21 +43,40 @@ func TestRm_WithDirectories(t *testing.T) {
 		},
 	}
 
-	dir1, err := os.MkdirTemp("./", "test")
+	dir1, err := os.MkdirTemp(".", "test")
 	require.NoError(t, err)
-	dir2, err := os.MkdirTemp("./"+dir1, "test")
+	dir2, err := os.MkdirTemp(dir1, "test")
 	require.NoError(t, err)
-	file1, err := os.CreateTemp("./"+dir1, "test")
+	file1, err := os.CreateTemp(dir1, "test")
 	require.NoError(t, err)
-	file2, err := os.CreateTemp("./"+dir2, "test")
+	file2, err := os.CreateTemp(dir2, "test")
 	require.NoError(t, err)
 
-	testArgs := []string{execName, "rm", "-r", dir1}
+	testArgs := []string{execName, "rm", "-R", dir1}
 	require.NoError(t, app.Run(testArgs))
 
 	require.False(t, fileExists(file1.Name()))
 	require.False(t, fileExists(file2.Name()))
 	require.False(t, fileExists(dir1))
+}
+
+func TestRm_WithFilesForcefully(t *testing.T) {
+	execName, err := os.Executable()
+	require.NoError(t, err)
+
+	app := &cli.App{
+		Commands: []*cli.Command{
+			rm.Command(),
+		},
+	}
+
+	file1, err := os.CreateTemp("./", "test")
+	require.NoError(t, err)
+	require.NoError(t, os.Chmod(file1.Name(), 0444))
+
+	testArgs := []string{execName, "rm", "-f", file1.Name()}
+	require.NoError(t, app.Run(testArgs))
+	require.False(t, fileExists(file1.Name()))
 }
 
 func fileExists(path string) bool {
