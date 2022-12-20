@@ -31,7 +31,12 @@ gol pwd
 
 ##### whoami
 ```bash
-gol pwd
+gol whoami
+```
+
+##### wc
+```bash
+gol wc
 ```
 
 #### Global Options
