@@ -16,6 +16,7 @@ import (
 	"github.com/yakuter/gol/commands/mkdir"
 	"github.com/yakuter/gol/commands/pwd"
 	"github.com/yakuter/gol/commands/touch"
+	"github.com/yakuter/gol/commands/wc"
 	"github.com/yakuter/gol/commands/whoami"
 )
 
@@ -46,5 +47,6 @@ func Commands(reader io.Reader) []*cli.Command {
 		ls.Command(),
 		cat.Command(),
 		cp.Command(),
+		wc.Command(),
 	}
 }
